@@ -1,6 +1,7 @@
 [workspace]
-members = [
+members = ["control_flow",
     "data_types",
+    "functions",
     "guessing_game",
     "hello",
     "variables",
