@@ -1,9 +1,13 @@
 [workspace]
-members = ["control_flow",
+members = [
+    "control_flow",
     "data_types",
     "functions",
     "guessing_game",
     "hello",
+    "ownership",
+    "references_borrowing",
+    "slice_type",
     "variables",
 ]
 resolver="2"

@@ -23,5 +23,17 @@ name = "hello"
 version = "0.1.0"
 
 [[package]]
+name = "ownership"
+version = "0.1.0"
+
+[[package]]
+name = "references_borrowing"
+version = "0.1.0"
+
+[[package]]
+name = "slice_type"
+version = "0.1.0"
+
+[[package]]
 name = "variables"
 version = "0.1.0"

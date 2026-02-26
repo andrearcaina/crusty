@@ -115,4 +115,13 @@ fn main() {
     let array: [i32; 5] = [3; 5]; // this creates an array of length 5
 
     println!("array: {:?}", array);
+
+    // in order to change an element of an array, the array must be mutable
+    let mut array: [i32; 5] = [1, 2, 3, 4, 5];
+
+    println!("array before change: {:?}", array);
+
+    array[0] = 10; // this changes the first element of the array to 10
+
+    println!("array after change: {:?}", array);
 }
