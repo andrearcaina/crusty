@@ -8,6 +8,7 @@ members = [
     "ownership",
     "references_borrowing",
     "slice_type",
+    "structs",
     "variables",
 ]
 resolver="2"
