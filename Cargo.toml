@@ -2,6 +2,7 @@
 members = [
     "control_flow",
     "data_types",
+    "enums",
     "functions",
     "guessing_game",
     "hello",
