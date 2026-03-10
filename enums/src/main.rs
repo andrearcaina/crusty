@@ -1,3 +1,5 @@
+mod r#match; // match is a reserved keyword, so we use r#match instead (this escapes the keyword)
+
 #[derive(Debug)]
 enum IpAddrKind {
     V4,
@@ -106,6 +108,9 @@ fn main() {
     // let y: Option<i8> = Some(5);
     // let sum = x + y;
     // this wont compile because Option<i8> is not a numeric type
+
+    // can also use match expressions with enums
+    r#match::run();
 }
 
 // can now have functions that take in IpAddrKind enum variants
