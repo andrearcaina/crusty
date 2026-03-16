@@ -1,3 +1,4 @@
+mod flow;
 mod r#match; // match is a reserved keyword, so we use r#match instead (this escapes the keyword)
 
 #[derive(Debug)]
@@ -111,6 +112,8 @@ fn main() {
 
     // can also use match expressions with enums
     r#match::run();
+
+    flow::run();
 }
 
 // can now have functions that take in IpAddrKind enum variants
