@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "backyard",
+    "collections",
     "control_flow",
     "data_types",
     "enums",
@@ -9,6 +10,7 @@ members = [
     "hello",
     "ownership",
     "references_borrowing",
+    "restaurant",
     "slice_type",
     "structs",
     "variables",
