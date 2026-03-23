@@ -146,4 +146,91 @@ fn main() {
     for b in "Зд".bytes() {
         println!("{b}");
     }
+
+    // hash set
+    use std::collections::HashSet;
+    let mut set = HashSet::new();
+    set.insert(1); // same as python set.add()
+    set.insert(2);
+    set.insert(3);
+    println!("set: {:#?}", set);
+    set.remove(&1); // same as python set.discard()
+    println!("set after remove: {:#?}", set);
+
+    // check if a value is in the set (O(1) lookup)
+    if set.contains(&2) {
+        println!("set contains 2");
+    }
+
+    // hash map
+    use std::collections::HashMap;
+    let mut map = HashMap::<String, i32>::new();
+    map.insert(String::from("one"), 1);
+    map.insert(String::from("two"), 2);
+    map.insert(String::from("three"), 3);
+    println!("map: {:#?}", map);
+    map.remove("one");
+    println!("map after remove: {:#?}", map);
+
+    // accessing values in a hash map
+    let val = map.get(&String::from("two")).copied().unwrap_or_default(); // copies the value out of the map, or returns 0 if the key is not found
+    println!("two: {}", val);
+
+    for (key, val) in &map {
+        println!("{}: {}", key, val);
+    }
+
+    let field_name = String::from("Favorite color");
+    let field_value = String::from("Blue");
+
+    let mut fav = HashMap::new();
+    fav.insert(field_name, field_value);
+    println!("map: {:#?}", fav);
+
+    // cannot use field_name and field_value after insert, as they are moved into the map
+
+    let mut map = HashMap::<String, i32>::new();
+    map.insert(String::from("Green"), 20);
+    map.insert(String::from("Blue"), 50);
+    // updating a value in a hash map
+    map.insert(String::from("Blue"), 100);
+    println!("map after update: {:#?}", map);
+
+    // adding a key and val only if a key isn't present
+    map.entry(String::from("Yellow")).or_insert(30); // inserts 30 if "Yellow" is not already in the map
+    map.entry(String::from("Green")).or_insert(30); // does nothing, as "Green" is already in the map (but, the value is not updated since it already has a value)
+    println!("map after insert: {:#?}", map);
+
+    // updating a value based on the old value
+    if let Some(val) = map.get_mut(&String::from("Blue")) {
+        *val += 100;
+    }
+    println!("map after update based on old value: {:#?}", map);
+
+    let text = "Orange Red Brown Orange Orange Orange";
+
+    for word in text.split_whitespace() {
+        let count = map.entry(String::from(word)).or_insert(0);
+        *count += 1;
+    }
+
+    println!("map after word count: {:#?}", map);
+
+    // check if a key is in the map
+    if map.contains_key(&String::from("Green")) {
+        println!("map contains Green");
+    }
+
+    // get a value from the map using let Some(val)
+    if let Some(val) = map.get(&String::from("Blue")) {
+        println!("map value for Blue: {}", val);
+    }
+
+    // get a value without using let Some(val)
+    let val = map.get(&String::from("Blue")); // this doesn't copy the value, it just borrows it (it returns an Option<&T>)
+    println!("map value for Blue (borrowed): {:?}", val);
+
+    // you have to copy the value or use let Some(val) to get ownership
+    let val = val.copied().unwrap_or_default();
+    println!("map value for Blue (copied): {:?}", val);
 }
