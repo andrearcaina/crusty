@@ -5,6 +5,7 @@ members = [
     "control_flow",
     "data_types",
     "enums",
+    "error_handling",
     "functions",
     "guessing_game",
     "hello",
