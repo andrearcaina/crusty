@@ -7,6 +7,7 @@ members = [
     "enums",
     "error_handling",
     "functions",
+    "generics",
     "guessing_game",
     "hello",
     "ownership",
