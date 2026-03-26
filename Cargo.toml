@@ -15,6 +15,7 @@ members = [
     "restaurant",
     "slice_type",
     "structs",
+    "traits",
     "variables",
 ]
 resolver="2"
