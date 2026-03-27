@@ -10,6 +10,7 @@ members = [
     "generics",
     "guessing_game",
     "hello",
+    "lifetimes",
     "ownership",
     "references_borrowing",
     "restaurant",
