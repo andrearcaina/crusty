@@ -67,6 +67,10 @@ name = "structs"
 version = "0.1.0"
 
 [[package]]
+name = "tests"
+version = "0.1.0"
+
+[[package]]
 name = "traits"
 version = "0.1.0"
 

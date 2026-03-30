@@ -16,6 +16,7 @@ members = [
     "restaurant",
     "slice_type",
     "structs",
+    "tests",
     "traits",
     "variables",
 ]
