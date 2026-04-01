@@ -11,6 +11,7 @@ members = [
     "guessing_game",
     "hello",
     "lifetimes",
+    "minigrep",
     "ownership",
     "references_borrowing",
     "restaurant",
