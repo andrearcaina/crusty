@@ -3,27 +3,46 @@ mod reader; // same as above, but for reader.rs
 
 use crate::config::Config;
 use crate::reader::Reader;
+use minigrep::{search, search_case_insensitive};
 
 use std::env;
+use std::error;
 use std::process;
 
 fn main() {
+    // call the run function and handle any errors that occur during execution
+    // allows exits gracefully and instead of a lot of Rust error handling, we do it our own way
+    if let Err(err) = run() {
+        eprintln!("Problem: {}", err); // eprintln! is like println!, but prints to stderr instead of stdout
+        process::exit(1);
+    }
+}
+
+fn run() -> Result<(), Box<dyn error::Error>> {
     let args: Vec<String> = env::args().collect();
 
-    // build a Config struct from the command line arguments, and handle any errors that occur during parsing
-    // unwrap_or_else will call the provided closure if the Result is an Err, allowing us to print an error message and exit the program gracefully
-    let cfg = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {}", err);
-        process::exit(1); // same as os.Exit(1) in Go, it terminates the program with a non-zero exit code to indicate an error
-    });
+    // create a new Config struct from the command line arguments
+    // and handle any errors that occur during parsing with the ? operator
+    let cfg = Config::new(&args)?;
 
-    let reader = Reader::new(&cfg.file_path); // create a new Reader instance using the file path specified in the Config struct
+    // create a new Reader struct from the file path in the Config struct
+    // and handle any errors that occur during reading with the ? operator
+    let reader = Reader::new(&cfg.file_path);
+    let contents = reader.read()?;
 
-    // read the contents of the file specified in the Config struct, and handle any errors that occur during file reading
-    let contents = reader.read().unwrap_or_else(|err| {
-        println!("Problem reading file: {}", err);
-        process::exit(1); // same as os.Exit(1) in Go, it terminates the program with a non-zero exit code to indicate an error
-    });
+    let results = if cfg.ignore_case {
+        search_case_insensitive(&cfg.query, &contents)
+    } else {
+        search(&cfg.query, &contents)
+    };
 
-    println!("File contents:\n{}", contents); // print the contents of the file to the console
+    if results.is_empty() {
+        println!("No matches found");
+    } else {
+        for line in results {
+            println!("{}", line);
+        }
+    }
+
+    Ok(())
 }
