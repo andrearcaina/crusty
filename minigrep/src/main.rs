@@ -3,7 +3,7 @@ mod reader; // same as above, but for reader.rs
 
 use crate::config::Config;
 use crate::reader::Reader;
-use minigrep::{search, search_case_insensitive};
+use minigrep::{search_case_insensitive, search_with_closure};
 
 use std::env;
 use std::error;
@@ -19,11 +19,9 @@ fn main() {
 }
 
 fn run() -> Result<(), Box<dyn error::Error>> {
-    let args: Vec<String> = env::args().collect();
-
     // create a new Config struct from the command line arguments
     // and handle any errors that occur during parsing with the ? operator
-    let cfg = Config::new(&args)?;
+    let cfg = Config::new_from_iter(env::args())?;
 
     // create a new Reader struct from the file path in the Config struct
     // and handle any errors that occur during reading with the ? operator
@@ -33,7 +31,7 @@ fn run() -> Result<(), Box<dyn error::Error>> {
     let results = if cfg.ignore_case {
         search_case_insensitive(&cfg.query, &contents)
     } else {
-        search(&cfg.query, &contents)
+        search_with_closure(&cfg.query, &contents)
     };
 
     if results.is_empty() {

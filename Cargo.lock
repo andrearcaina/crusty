@@ -43,6 +43,10 @@ name = "hello"
 version = "0.1.0"
 
 [[package]]
+name = "iters_and_closures"
+version = "0.1.0"
+
+[[package]]
 name = "lifetimes"
 version = "0.1.0"
 

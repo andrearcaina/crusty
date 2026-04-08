@@ -8,15 +8,13 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     }
 
     results
+}
 
-    /* could've also done
-     *
-     * contents
-     *     .lines() // get an iterator over the lines of the contents string
-     *     .filter(|line| line.contains(query)) // filter the lines that contain the query string
-     *     .collect() // collect the filtered lines into a vector
-     *
-     */
+pub fn search_with_closure<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -80,6 +78,18 @@ Pick three.";
 
         let result = search(query, contents);
         assert!(result.is_empty());
+    }
+
+    #[test]
+    fn one_result_closure() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.";
+
+        let result = search_with_closure(query, contents);
+        assert_eq!(vec!["safe, fast, productive."], result);
     }
 
     #[test]
