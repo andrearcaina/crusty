@@ -55,6 +55,10 @@ name = "minigrep"
 version = "0.1.0"
 
 [[package]]
+name = "my_crate"
+version = "0.1.0"
+
+[[package]]
 name = "ownership"
 version = "0.1.0"
 
@@ -68,6 +72,10 @@ version = "0.1.0"
 
 [[package]]
 name = "slice_type"
+version = "0.1.0"
+
+[[package]]
+name = "smart_pointers"
 version = "0.1.0"
 
 [[package]]
