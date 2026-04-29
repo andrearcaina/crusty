@@ -83,6 +83,10 @@ name = "structs"
 version = "0.1.0"
 
 [[package]]
+name = "tcp_server"
+version = "0.1.0"
+
+[[package]]
 name = "tests"
 version = "0.1.0"
 

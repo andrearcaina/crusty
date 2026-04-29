@@ -20,6 +20,7 @@ members = [
     "slice_type",
     "smart_pointers",
     "structs",
+    "tcp_server",
     "tests",
     "traits",
     "variables",
